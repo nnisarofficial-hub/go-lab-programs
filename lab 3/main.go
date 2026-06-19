@@ -4,16 +4,12 @@ import "fmt"
 
 func main() {
 	// addition of 2 numbers
-	var (
-		input1 int
-		input2 int
-	)
+	var num1, num2 int
 	fmt.Print("Enter first number: ")
-	fmt.Scan(&input1)
+	fmt.Scan(&num1)
 	fmt.Print("Enter second number: ")
-	fmt.Scan(&input2)
+	fmt.Scan(&num2)
 
-	sum := input1 + input2
-	fmt.Printf("The sum is: %d\n", sum)
+	fmt.Printf("%d + %d = %d\n", num1, num2, num1+num2)
 
 }
