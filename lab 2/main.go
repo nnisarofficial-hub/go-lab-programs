@@ -3,10 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	input := ""
-	fmt.Print("Enter one word: ")
-
-	fmt.Scan(&input)
-
-	fmt.Print("Hello, ", input, "!")
+	name := ""
+	fmt.Print("Enter your name: ")
+	fmt.Scan(&name)
+	fmt.Print("Hello, ", name, "!")
 }
