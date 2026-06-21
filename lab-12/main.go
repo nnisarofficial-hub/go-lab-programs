@@ -7,7 +7,7 @@ func main() {
 	fmt.Print("Enter a number: ")
 	_, err := fmt.Scan(&number)
 	if err != nil {
-		fmt.Println("This is not a number")
+		fmt.Printf("This is not a number: %v", err)
 		return
 	}
 
