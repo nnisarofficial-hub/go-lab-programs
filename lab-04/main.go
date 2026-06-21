@@ -12,7 +12,7 @@ func main() {
 	fmt.Print("Enter operator (+, -, *, /): ")
 	fmt.Scan(&operator)
 
-	fmt.Print("Enter first number: ")
+	fmt.Print("Enter second number: ")
 	fmt.Scan(&num2)
 
 	switch operator {
