@@ -7,7 +7,7 @@ func main() {
 	fmt.Print("Enter three numbers: ")
 	_, err := fmt.Scan(&num1, &num2, &num3)
 	if err != nil {
-		fmt.Print("Please enter valid numbers")
+		fmt.Print("Please enter valid numbers ", err)
 		return
 	}
 
