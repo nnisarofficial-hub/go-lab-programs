@@ -7,7 +7,7 @@ func main() {
 	fmt.Print("Enter score: ")
 	_, err := fmt.Scan(&score)
 	if err != nil {
-		fmt.Print("Please enter valid score")
+		fmt.Print("Please enter valid score ", err)
 		return
 	}
 
