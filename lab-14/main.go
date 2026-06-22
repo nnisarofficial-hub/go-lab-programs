@@ -7,7 +7,7 @@ func main() {
 	fmt.Print("Enter year: ")
 	_, err := fmt.Scan(&year)
 	if err != nil {
-		fmt.Print("Please enter valid year")
+		fmt.Print("Please enter valid year ", err)
 		return
 	}
 	// A year is a leap year if: divisible by 4, AND (not divisible by 100, OR divisible by 400)
