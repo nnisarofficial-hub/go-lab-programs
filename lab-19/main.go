@@ -5,10 +5,8 @@ import "fmt"
 func main() {
 	var alphabet string
 	fmt.Print("Enter a letter: ")
-	_, err := fmt.Scan(&alphabet)
-	if err != nil {
-		fmt.Print("Please enter valid Alphabet: ", err)
-	}
+	fmt.Scan(&alphabet)
+
 	switch alphabet {
 	case "A", "a", "E", "e", "I", "i", "O", "o", "U", "u":
 		fmt.Print(alphabet, " is a vowel")
