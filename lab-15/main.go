@@ -19,7 +19,7 @@ func main() {
 		fmt.Print("Grade: C")
 	} else if score >= 60 && score <= 69 {
 		fmt.Print("Grade: D")
-	} else if score < 60 && score > 0 {
+	} else if score < 60 && score >= 0 {
 		fmt.Print("Grade: F")
 	} else if score > 100 || score < 0 {
 		fmt.Print("Invalid score. Must be between 0 and 100.")
