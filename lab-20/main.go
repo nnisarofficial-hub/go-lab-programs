@@ -17,7 +17,6 @@ func main() {
 
 		fmt.Print("Equilateral triangle")
 	} else if length1 == length2 || length2 == length3 || length1 == length3 {
-
 		fmt.Print("Isosceles triangle")
 	}
 }
