@@ -10,11 +10,8 @@ func main() {
 		fmt.Print(err)
 		return
 	}
-	for i := number; i >= 0; i-- {
-		if i == 0 {
-			fmt.Println("Go!")
-		} else {
-			fmt.Println(i)
-		}
+	for i := number; i > 0; i-- {
+		fmt.Println(i)
 	}
+	fmt.Println("Go!")
 }
