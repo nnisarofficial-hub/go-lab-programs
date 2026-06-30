@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	const number = 42
 	counter := 0
-	for number != 0 {
+	for {
 		var guess int
 		fmt.Print("Guess the number: ")
 		_, err := fmt.Scan(&guess)
