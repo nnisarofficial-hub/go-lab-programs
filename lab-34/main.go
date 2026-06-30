@@ -19,7 +19,6 @@ func main() {
 	fmt.Printf("Vowels: %d", countVowels(sentence))
 }
 func countVowels(senence string) int {
-
 	lowerStr := strings.ToLower(senence)
 	counter := 0
 	for _, char := range lowerStr {
