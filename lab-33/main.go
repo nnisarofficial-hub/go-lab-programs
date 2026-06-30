@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter text: ")
 	text, err := reader.ReadString('\r')
