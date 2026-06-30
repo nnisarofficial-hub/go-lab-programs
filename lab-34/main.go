@@ -18,7 +18,6 @@ func main() {
 	fmt.Print(countVowels(senence))
 }
 func countVowels(senence string) int {
-
 	lowerStr := strings.ToLower(senence)
 	counter := 0
 	for _, char := range lowerStr {
