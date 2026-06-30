@@ -25,5 +25,4 @@ func power(baseValue, expValue int) int {
 		valueStore *= baseValue
 	}
 	return valueStore
-
 }
