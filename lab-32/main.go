@@ -3,7 +3,6 @@ package main
 import "fmt"
 
 func main() {
-
 	var baseValue int
 	fmt.Print("Enter base: ")
 	if _, err := fmt.Scan(&baseValue); err != nil {
