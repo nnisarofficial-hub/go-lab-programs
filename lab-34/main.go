@@ -10,12 +10,13 @@ import (
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter sentence: ")
-	senence, err := reader.ReadString('\r')
+	sentence, err := reader.ReadString('\r')
 	if err != nil {
 		fmt.Print(err)
 		return
 	}
-	fmt.Print(countVowels(senence))
+
+	fmt.Printf("Vowels: %d", countVowels(sentence))
 }
 func countVowels(senence string) int {
 
