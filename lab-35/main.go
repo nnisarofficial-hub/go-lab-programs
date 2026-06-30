@@ -13,7 +13,7 @@ func main() {
 		fmt.Print(err)
 		return
 	}
-	if isPalindrome(word) == true {
+	if isPalindrome(word) {
 		fmt.Print(word, " is a palindrome")
 	} else {
 		fmt.Print(word, " is not a palindrome")
