@@ -2,8 +2,6 @@ package main
 
 import "fmt"
 
-// I take help from the internet but I really understood by myself i can write code again without taking any help
-// and please remove these comments while checking
 
 func main() {
 	var star int
