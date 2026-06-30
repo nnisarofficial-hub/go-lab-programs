@@ -16,7 +16,6 @@ func main() {
 		return
 	}
 	fmt.Print(reverseStringShort(text))
-
 }
 
 func reverseStringShort(s string) string {
