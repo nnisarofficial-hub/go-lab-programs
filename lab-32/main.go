@@ -19,7 +19,6 @@ func main() {
 }
 
 func power(baseValue, expValue int) int {
-
 	valueStore := 1
 	for i := 1; i <= expValue; i++ {
 		valueStore *= baseValue
