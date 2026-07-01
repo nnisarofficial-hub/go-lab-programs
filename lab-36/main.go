@@ -9,7 +9,7 @@ import (
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter a sentence: ")
-	sentence, err := reader.ReadString('\r')
+	sentence, err := reader.ReadString('\n') // I was using '\r' so that is why program was not giving output.
 	if err != nil {
 		fmt.Print(err)
 		return
