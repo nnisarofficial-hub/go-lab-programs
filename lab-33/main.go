@@ -10,7 +10,7 @@ import (
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter text: ")
-	text, err := reader.ReadString('\r')
+	text, err := reader.ReadString('\n') // change from '\r' to '\n' so can run on all machines
 	if err != nil {
 		fmt.Print(err)
 		return
