@@ -6,7 +6,6 @@ import (
 	"os"
 	"strings"
 )
-
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter sentence: ")
@@ -16,7 +15,6 @@ func main() {
 		return
 	}
 	fmt.Print(titleCase(sentence))
-
 }
 func titleCase(sentence string) string {
 	words := strings.Fields(sentence)
@@ -24,5 +22,4 @@ func titleCase(sentence string) string {
 		words[i] = strings.ToUpper(string(word[0])) + word[1:]
 	}
 	return strings.Join(words, " ")
-
 }
