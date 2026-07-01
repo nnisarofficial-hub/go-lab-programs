@@ -10,7 +10,7 @@ import (
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter sentence: ")
-	sentence, err := reader.ReadString('\r')
+	sentence, err := reader.ReadString('\n')
 	if err != nil {
 		fmt.Print(err)
 		return
