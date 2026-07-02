@@ -17,9 +17,9 @@ func main() {
 	}
 	sentence = strings.TrimSpace(sentence)
 	fmt.Print("Enter Character: ")
-	character, err1 := reader.ReadString('\n')
-	if err1 != nil {
-		fmt.Print(err1)
+	character, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Print(err)
 		return
 	}
 	character = strings.TrimSpace(character)
