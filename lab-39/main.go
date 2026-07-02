@@ -18,6 +18,7 @@ func main() {
 	fmt.Print(removeSpaces(sentence))
 	fmt.Printf("Removed %d spaces", countSpaces(sentence))
 }
+
 func countSpaces(sentence string) int {
 	return strings.Count(sentence, " ")
 }
