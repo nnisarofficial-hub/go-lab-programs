@@ -16,9 +16,9 @@ func main() {
 	}
 	var shift int
 	fmt.Print("Enter shift: ")
-	_, err1 := fmt.Scanf("%d\n", &shift)
-	if err1 != nil {
-		fmt.Print(err1)
+	_, err := fmt.Scanf("%d\n", &shift)
+	if err != nil {
+		fmt.Print(err)
 		return
 	}
 	fmt.Print(caesarCipher(message, shift))
