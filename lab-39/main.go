@@ -22,6 +22,7 @@ func main() {
 func countSpaces(sentence string) int {
 	return strings.Count(sentence, " ")
 }
+
 func removeSpaces(sentence string) string {
 	result := strings.ReplaceAll(sentence, " ", "")
 	return result
