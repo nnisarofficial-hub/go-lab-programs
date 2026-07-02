@@ -24,7 +24,6 @@ func main() {
 	fmt.Print(caesarCipher(message, shift))
 }
 func caesarCipher(message string, shift int) string {
-
 	encryption := make([]rune, 0)
 
 	for _, i := range message {
