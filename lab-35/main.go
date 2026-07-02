@@ -22,10 +22,10 @@ func main() {
 }
 
 func isPalindrome(word string) bool {
-	return word == reverseStringShort(word)
+	return word == reverseString(word)
 }
 
-func reverseStringShort(sentence string) string {
+func reverseString(sentence string) string {
 	runes := []rune(sentence)
 	slices.Reverse(runes)
 	return string(runes)
