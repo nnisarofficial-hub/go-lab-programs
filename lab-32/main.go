@@ -11,11 +11,11 @@ func main() {
 	}
 	var expValue int
 	fmt.Print("Enter exponent: ")
-	if _, err1 := fmt.Scan(&expValue); err1 != nil {
-		fmt.Print(err1)
+	if _, err := fmt.Scan(&expValue); err != nil {
+		fmt.Print(err)
 		return
 	}
-	fmt.Print(power(baseValue, expValue))
+	fmt.Printf("%d^%d = %d", baseValue, expValue, power(baseValue, expValue))
 }
 
 func power(baseValue, expValue int) int {
