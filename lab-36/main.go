@@ -16,6 +16,7 @@ func main() {
 	}
 	fmt.Printf("Word Count: %d", wordCounter(sentence))
 }
+
 func wordCounter(sentence string) int {
 	sliceSentence := strings.Fields(sentence)
 	return len(sliceSentence)
