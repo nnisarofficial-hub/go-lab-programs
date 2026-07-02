@@ -25,6 +25,7 @@ func main() {
 	character = strings.TrimSpace(character)
 	fmt.Printf("'%s' appears %d times in %s", character, countChr(sentence, character), sentence)
 }
+
 func countChr(sentence, character string) int {
 	return strings.Count(sentence, character)
 }
