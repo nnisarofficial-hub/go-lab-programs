@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-
 	var word string
 	fmt.Print("Enter a word: ")
 	if _, err := fmt.Scan(&word); err != nil {
@@ -18,7 +17,6 @@ func main() {
 	} else {
 		fmt.Print(word, " is not a palindrome")
 	}
-
 }
 
 func isPalindrome(word string) bool {
