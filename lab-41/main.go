@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	arr := [7]int{3, 1, 4, 5, 9, 2, 6}
 	min, max := minMax(arr)
-	fmt.Println("Numbers", arr)
+	fmt.Println("Numbers:", arr)
 	fmt.Println("Minimum: ", min)
 	fmt.Println("Maximum: ", max)
 }
