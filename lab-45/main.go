@@ -18,6 +18,7 @@ func userMenu() {
 	fmt.Println("4. List all")
 	fmt.Println("5. Quit")
 }
+
 func main() {
 	userMenu()
 	reader := bufio.NewReader(os.Stdin)
