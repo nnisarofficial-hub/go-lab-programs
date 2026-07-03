@@ -9,7 +9,7 @@ func main() {
 }
 
 func removeDuplicate(arrOriginal []int) []int {
-	arrUnique := []int{}
+	arrUnique := make([]int, 0)
 	seen := make(map[int]bool)
 	for _, value := range arrOriginal {
 		if !seen[value] {
