@@ -5,11 +5,6 @@ import (
 	"fmt"
 )
 
-type BankAccount struct {
-	Owner   string
-	Balance float64
-}
-
 func main() {
 	account := BankAccount{Owner: "Ali", Balance: 0.00}
 	account.PrintStatement()
@@ -29,6 +24,11 @@ func main() {
 		fmt.Printf("Withdrew PKR %.2f\n", 5000.00)
 		fmt.Printf("Balance: PKR %.2f\n\n", withdrawl2)
 	}
+}
+
+type BankAccount struct {
+	Owner   string
+	Balance float64
 }
 
 func (acc *BankAccount) Deposit(amountDepo float64) (amount float64) {
