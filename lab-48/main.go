@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type BankAccount struct {
 	Owner   string
@@ -9,10 +12,7 @@ type BankAccount struct {
 
 func main() {
 	account := BankAccount{Owner: "Ali", Balance: 0.00}
-	ownerName, accBalance := account.PrintStatement()
-	fmt.Printf("Account: %s\n", ownerName)
-	fmt.Printf("Balance: PKR %.2f\n\n", accBalance)
-
+	account.PrintStatement()
 	deposit := account.Deposit(5000.00)
 	fmt.Printf("Deposited PKR %.2f\n", 5000.00)
 	fmt.Printf("Balance: PKR %.2f\n\n", deposit)
@@ -22,7 +22,7 @@ func main() {
 	fmt.Printf("Balance: PKR %.2f\n\n", withdrawal1)
 
 	withdrawl2, err := account.Withdraw(5000.00)
-	if err != "" {
+	if err != nil {
 		fmt.Println(err)
 		fmt.Printf("Balance: PKR %.2f\n\n", withdrawl2)
 	} else {
@@ -36,15 +36,18 @@ func (acc *BankAccount) Deposit(amountDepo float64) (amount float64) {
 	return acc.Balance
 }
 
-func (acc *BankAccount) Withdraw(amountWdr float64) (amount float64, errMsg string) {
-	if amountWdr >= acc.Balance {
-		errMsg = fmt.Sprintf("Error: insufficient funds (tried to withdraw PKR %.2f, balance is PKR %.2f)", amountWdr, acc.Balance)
-		return acc.Balance, errMsg
+func (acc *BankAccount) Withdraw(amountWdr float64) (amount float64, err error) {
+	if amountWdr <= 0 {
+		return acc.Balance, errors.New("withdrawal amount must be greater than zero")
+	}
+	if amountWdr > acc.Balance {
+		err = fmt.Errorf("Error: insufficient funds (tried to withdraw PKR %.2f, balance is PKR %.2f)", amountWdr, acc.Balance)
+		return acc.Balance, err
 	}
 	acc.Balance -= amountWdr
-	return acc.Balance, ""
+	return acc.Balance, err
 }
 
-func (acc BankAccount) PrintStatement() (owner string, balance float64) {
-	return acc.Owner, acc.Balance
+func (acc BankAccount) PrintStatement() {
+	fmt.Printf("Account: %s\nBalance: %.2f\n\n", acc.Owner, acc.Balance)
 }
