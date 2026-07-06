@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -59,14 +60,14 @@ func handleLookUp(reader *bufio.Reader, store map[string]string) {
 		fmt.Print(err)
 		return
 	}
-	nameClean := strings.ToLower(strings.TrimSpace(name))
+	name = strings.ToLower(strings.TrimSpace(name))
 	caser := cases.Title(language.English)
-	displayName := caser.String(nameClean)
-	number := store[nameClean]
-	if number == "" {
-		fmt.Printf("Contact '%s' not found.\n", displayName)
-	} else {
+	displayName := caser.String(name)
+	number, found := store[name]
+	if found {
 		fmt.Printf("%s: %s\n", displayName, number)
+	} else {
+		fmt.Printf("Contact '%s' not found.\n", displayName)
 	}
 }
 
@@ -77,16 +78,16 @@ func handleAdd(reader *bufio.Reader, store map[string]string) {
 		fmt.Print(err)
 		return
 	}
-	nameClean := strings.ToLower(strings.TrimSpace(name))
+	name = strings.ToLower(strings.TrimSpace(name))
 	fmt.Print("Enter number: ")
 	number, err := reader.ReadString('\n')
 	if err != nil {
 		fmt.Print(err)
 		return
 	}
-	numberClean := strings.TrimSpace(number)
-	errMsg := addContact(store, nameClean, numberClean)
-	if errMsg != "" {
+	number = strings.TrimSpace(number)
+	errMsg := addContact(store, name, number)
+	if errMsg != nil {
 		fmt.Println(errMsg)
 	} else {
 		fmt.Print("Number added successfully!\n")
@@ -100,12 +101,12 @@ func handleDelete(reader *bufio.Reader, store map[string]string) {
 		fmt.Print(err)
 		return
 	}
-	nameClean := strings.ToLower(strings.TrimSpace(name))
-	errMsg := deleteContact(store, nameClean)
+	name = strings.ToLower(strings.TrimSpace(name))
+	errMsg := deleteContact(store, name)
 	if errMsg != "" {
 		fmt.Println(errMsg)
 	} else {
-		fmt.Printf("Contact name %s deleted successfully!\n", nameClean)
+		fmt.Printf("Contact name %s deleted successfully!\n", name)
 	}
 }
 
@@ -122,21 +123,17 @@ func handleListAll(store map[string]string) {
 // ===================
 
 func dataStore() map[string]string {
-	contactDetails := map[string]string{
-		"ali":  "0300-1234567",
-		"sara": "0321-9876543",
-		"umar": "0333-1111222",
-	}
+	contactDetails := map[string]string{}
 	return contactDetails
 }
 
-func addContact(store map[string]string, name, number string) string {
+func addContact(store map[string]string, name, number string) error {
 	_, exists := store[name]
 	if exists {
-		return "Error: This contact name already exists!"
+		return errors.New("Error: This contact name already exists!")
 	}
 	store[name] = number
-	return ""
+	return nil
 }
 
 func deleteContact(store map[string]string, name string) string {
