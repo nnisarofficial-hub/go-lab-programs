@@ -8,12 +8,6 @@ import (
 	"strings"
 )
 
-type Todo struct {
-	ID   int
-	Text string
-	Done bool
-}
-
 func main() {
 	menu()
 	reader := bufio.NewReader(os.Stdin)
@@ -25,8 +19,8 @@ func main() {
 			fmt.Print(err)
 			return
 		}
-		choice := strings.TrimSpace(userChoice)
-		switch choice {
+		userChoice = strings.TrimSpace(userChoice)
+		switch userChoice {
 		case "1":
 			todoList = handleAddTask(reader, todoList)
 		case "2":
@@ -47,6 +41,12 @@ func menu() {
 	fmt.Print("1. Add  2. List  3. Done  4. Delete  5. Quit")
 }
 
+type Todo struct {
+	ID   int
+	Text string
+	Done bool
+}
+
 // ========================
 //
 //	Handling Core Functions
@@ -59,12 +59,12 @@ func handleAddTask(reader *bufio.Reader, list []Todo) []Todo {
 		fmt.Print(err)
 		return list
 	}
-	taskClean := strings.TrimSpace(task)
-	if taskClean == "" {
+	task = strings.TrimSpace(task)
+	if task == "" {
 		fmt.Printf("No task added!")
 		return list
 	} else {
-		list = addTask(list, taskClean)
+		list = addTask(list, task)
 		fmt.Printf("Added ✓\n")
 		return list
 	}
@@ -85,8 +85,8 @@ func handleTaskDone(reader *bufio.Reader, list []Todo) []Todo {
 		fmt.Print(err)
 		return list
 	}
-	idClean := strings.TrimSpace(id)
-	targetId, err := strconv.Atoi(idClean)
+	id = strings.TrimSpace(id)
+	targetId, err := strconv.Atoi(id)
 	if err != nil {
 		fmt.Print("Please enter valid number ID! ", err)
 		return list
@@ -102,8 +102,8 @@ func handleDeleteTask(reader *bufio.Reader, list []Todo) []Todo {
 		fmt.Print(err)
 		return list
 	}
-	idClean := strings.TrimSpace(id)
-	targetId, err := strconv.Atoi(idClean)
+	id = strings.TrimSpace(id)
+	targetId, err := strconv.Atoi(id)
 	if err != nil {
 		fmt.Print("Please enter valid number ID! ", err)
 		return list
@@ -117,6 +117,7 @@ func handleDeleteTask(reader *bufio.Reader, list []Todo) []Todo {
 //	Core Functions
 //
 // ========================
+
 func addTask(list []Todo, taskTest string) []Todo {
 	nextID := len(list) + 1
 	newTodo := Todo{ID: nextID, Text: taskTest, Done: false}
