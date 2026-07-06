@@ -1,20 +1,18 @@
 package main
 
-import "fmt"
-
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
-	var star int
-	fmt.Print("Enter number: ")
-	fmt.Scan(&star)
-	for i := 1; i <= star; i++ {
-		for j := 1; j <= star-i; j++ {
-			fmt.Print(" ")
-		}
-		for k := 1; k <= i; k++ {
-			fmt.Print("*")
-		}
-		fmt.Println()
+	// Ask for the number of rows
+	var rows int
+	fmt.Print("Enter the number of rows: ")
+	fmt.Scanln(&rows)
+	for i := 1; i <= rows; i++ {
+		spaces := strings.Repeat(" ", rows-i)
+		stars := strings.Repeat("*", i)
+		fmt.Println(spaces + stars)
 	}
-
 }
