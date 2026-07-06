@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-	// Ask for the number of rows
 	var rows int
 	fmt.Print("Enter the number of rows: ")
 	fmt.Scanln(&rows)
