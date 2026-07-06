@@ -13,7 +13,6 @@ func main() {
 	var totalScore float64
 	fmt.Printf("%-12s %-8s %s\n", "Name", "Score", "Grade")
 	for _, std := range studentsData {
-		// scoreStr := fmt.Sprintf("%.1f", std.Score)
 		fmt.Printf("%-12s %-8.1f %s\n", std.Name, std.Score, std.Grade())
 		totalScore += std.Score
 	}
