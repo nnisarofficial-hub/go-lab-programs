@@ -4,9 +4,7 @@ import "fmt"
 
 func main() {
 	myStack := Stack{}
-	if myStack.IsEmpty() {
-		fmt.Println("Stack is empty: ", myStack.IsEmpty())
-	}
+	fmt.Printf("Stack is empty: %t\n\n", myStack.IsEmpty())
 	myStack.Push(10)
 	fmt.Println("")
 	fmt.Printf("Pushed: 10\n")
@@ -44,13 +42,12 @@ type Stack struct {
 func (a *Stack) Push(value int) {
 	a.array = append(a.array, value)
 }
-func (a *Stack) Pop() (removeVal int, err error) {
+func (a *Stack) Pop() (int, error) {
 	if len(a.array) == 0 {
 		return 0, fmt.Errorf("pop from empty stack: error: stack is empty")
 	}
-	removeVal = a.array[len(a.array)-1]
 	a.array = a.array[:len(a.array)-1]
-	return removeVal, nil
+	return a.array[len(a.array)-1], nil
 }
 
 func (a *Stack) Peek() (topVal int, err error) {
