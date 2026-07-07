@@ -38,36 +38,33 @@ func main() {
 }
 
 type Stack struct {
-	Array []int
+	array []int
 }
 
 func (a *Stack) Push(value int) {
-	a.Array = append(a.Array, value)
+	a.array = append(a.array, value)
 }
 func (a *Stack) Pop() (removeVal int, err error) {
-	if len(a.Array) == 0 {
-		return 0, fmt.Errorf("Pop from empty stack: error: stack is empty")
+	if len(a.array) == 0 {
+		return 0, fmt.Errorf("pop from empty stack: error: stack is empty")
 	}
-	removeVal = a.Array[len(a.Array)-1]
-	a.Array = a.Array[:len(a.Array)-1]
+	removeVal = a.array[len(a.array)-1]
+	a.array = a.array[:len(a.array)-1]
 	return removeVal, nil
 }
 
 func (a *Stack) Peek() (topVal int, err error) {
-	if len(a.Array) == 0 {
-		return 0, fmt.Errorf("Stack is empty")
+	if len(a.array) == 0 {
+		return 0, fmt.Errorf("stack is empty")
 	}
-	topVal = a.Array[len(a.Array)-1]
+	topVal = a.array[len(a.array)-1]
 	return topVal, nil
 }
 
 func (a *Stack) IsEmpty() bool {
-	if len(a.Array) != 0 {
-		return false
-	}
-	return true
+	return len(a.array) == 0
 }
 
 func (a *Stack) Size() (lenStack int) {
-	return len(a.Array)
+	return len(a.array)
 }
