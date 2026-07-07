@@ -102,9 +102,9 @@ func handleDelete(reader *bufio.Reader, store map[string]string) {
 		return
 	}
 	name = strings.ToLower(strings.TrimSpace(name))
-	errMsg := deleteContact(store, name)
-	if errMsg != "" {
-		fmt.Println(errMsg)
+	err = deleteContact(store, name)
+	if err != nil {
+		fmt.Println(err)
 	} else {
 		fmt.Printf("Contact name %s deleted successfully!\n", name)
 	}
@@ -136,11 +136,11 @@ func addContact(store map[string]string, name, number string) error {
 	return nil
 }
 
-func deleteContact(store map[string]string, name string) string {
+func deleteContact(store map[string]string, name string) error {
 	_, exists := store[name]
 	if exists {
 		delete(store, name)
-		return ""
+		return nil
 	}
-	return "Error: This contact not exists"
+	return errors.New("Error: This contact not exists")
 }
