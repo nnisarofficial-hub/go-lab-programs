@@ -25,9 +25,7 @@ func main() {
 	fmt.Printf("Size: %d\n\n", myStack.Size())
 	pop, _ = myStack.Pop()
 	fmt.Printf("Pop: %d\n", pop)
-	if myStack.IsEmpty() {
-		fmt.Printf("Stack is empty: %t\n\n", myStack.IsEmpty())
-	}
+	fmt.Printf("Stack is empty: %t\n\n", myStack.IsEmpty())
 	pop, err := myStack.Pop()
 	if err != nil {
 		fmt.Println(err)
@@ -50,18 +48,17 @@ func (a *Stack) Pop() (int, error) {
 	return a.array[len(a.array)-1], nil
 }
 
-func (a *Stack) Peek() (topVal int, err error) {
+func (a *Stack) Peek() (int, error) {
 	if len(a.array) == 0 {
 		return 0, fmt.Errorf("stack is empty")
 	}
-	topVal = a.array[len(a.array)-1]
-	return topVal, nil
+	return a.array[len(a.array)-1], nil
 }
 
 func (a *Stack) IsEmpty() bool {
 	return len(a.array) == 0
 }
 
-func (a *Stack) Size() (lenStack int) {
+func (a *Stack) Size() int {
 	return len(a.array)
 }
