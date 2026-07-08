@@ -23,7 +23,7 @@ func userMenu() {
 func main() {
 	userMenu()
 	reader := bufio.NewReader(os.Stdin)
-	store := dataStore()
+	store := map[string]string{}
 	for {
 		fmt.Print("> ")
 		userChoice, err := reader.ReadString('\n')
@@ -86,9 +86,9 @@ func handleAdd(reader *bufio.Reader, store map[string]string) {
 		return
 	}
 	number = strings.TrimSpace(number)
-	errMsg := addContact(store, name, number)
-	if errMsg != nil {
-		fmt.Println(errMsg)
+	err = addContact(store, name, number)
+	if err != nil {
+		fmt.Println(err)
 	} else {
 		fmt.Print("Number added successfully!\n")
 	}
@@ -122,15 +122,10 @@ func handleListAll(store map[string]string) {
 // Core Data Function
 // ===================
 
-func dataStore() map[string]string {
-	contactDetails := map[string]string{}
-	return contactDetails
-}
-
 func addContact(store map[string]string, name, number string) error {
 	_, exists := store[name]
 	if exists {
-		return errors.New("Error: This contact name already exists!")
+		return errors.New("error: This contact name already exists!")
 	}
 	store[name] = number
 	return nil
@@ -142,5 +137,5 @@ func deleteContact(store map[string]string, name string) error {
 		delete(store, name)
 		return nil
 	}
-	return errors.New("Error: This contact not exists")
+	return errors.New("error: This contact not exists")
 }
