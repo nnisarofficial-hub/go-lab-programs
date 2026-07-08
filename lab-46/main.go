@@ -35,8 +35,6 @@ func (s Student) Grade() string {
 		return "D"
 	} else if s.Score < 60 && s.Score >= 0 {
 		return "F"
-	} else if s.Score > 100 || s.Score < 0 {
-		return "Invalid score. Must be between 0 and 100."
 	}
-	return "Invalid"
+	return "F"
 }
