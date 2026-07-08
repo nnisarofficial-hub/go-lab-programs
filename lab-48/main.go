@@ -41,7 +41,7 @@ func (acc *BankAccount) Withdraw(amountWdr float64) (amount float64, err error) 
 		return acc.Balance, errors.New("withdrawal amount must be greater than zero")
 	}
 	if amountWdr > acc.Balance {
-		err = fmt.Errorf("Error: insufficient funds (tried to withdraw PKR %.2f, balance is PKR %.2f)", amountWdr, acc.Balance)
+		err = fmt.Errorf("error: insufficient funds (tried to withdraw PKR %.2f, balance is PKR %.2f)", amountWdr, acc.Balance)
 		return acc.Balance, err
 	}
 	acc.Balance -= amountWdr
