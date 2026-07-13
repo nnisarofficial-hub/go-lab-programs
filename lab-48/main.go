@@ -8,9 +8,14 @@ import (
 func main() {
 	account := BankAccount{Owner: "Ali", Balance: 0.00}
 	account.PrintStatement()
-	deposit := account.Deposit(5000.00)
-	fmt.Printf("Deposited PKR %.2f\n", 5000.00)
-	fmt.Printf("Balance: PKR %.2f\n\n", deposit)
+	deposit, err := account.Deposit(5000.00)
+	if err != nil {
+		fmt.Println("Error:", err)
+		fmt.Printf("Balance: PKR %.2f\n\n", deposit)
+	} else {
+		fmt.Printf("Deposited PKR %.2f\n", 5000.00) // This will be skipped now
+		fmt.Printf("Balance: PKR %.2f\n\n", deposit)
+	}
 
 	withdrawal1, _ := account.Withdraw(2000.00)
 	fmt.Printf("Withdrew PKR %.2f\n", 2000.00)
@@ -31,9 +36,12 @@ type BankAccount struct {
 	Balance float64
 }
 
-func (acc *BankAccount) Deposit(amountDepo float64) (amount float64) {
+func (acc *BankAccount) Deposit(amountDepo float64) (float64, error) {
+	if amountDepo < 0 {
+		return acc.Balance, errors.New("deposit amount cannot be negative")
+	}
 	acc.Balance += amountDepo
-	return acc.Balance
+	return acc.Balance, nil
 }
 
 func (acc *BankAccount) Withdraw(amountWdr float64) (amount float64, err error) {
