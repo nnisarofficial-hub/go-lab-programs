@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func main() {
 	myStack := Stack{}
@@ -42,15 +45,16 @@ func (a *Stack) Push(value int) {
 }
 func (a *Stack) Pop() (int, error) {
 	if len(a.array) == 0 {
-		return 0, fmt.Errorf("pop from empty stack: error: stack is empty")
+		return 0, errors.New("pop from empty stack: error: stack is empty")
 	}
+	top := a.array[len(a.array)-1]
 	a.array = a.array[:len(a.array)-1]
-	return a.array[len(a.array)-1], nil
+	return top, nil
 }
 
 func (a *Stack) Peek() (int, error) {
 	if len(a.array) == 0 {
-		return 0, fmt.Errorf("stack is empty")
+		return 0, errors.New("stack is empty")
 	}
 	return a.array[len(a.array)-1], nil
 }
