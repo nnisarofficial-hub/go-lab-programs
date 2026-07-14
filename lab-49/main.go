@@ -125,11 +125,11 @@ func addTask(list []Todo, taskTest string) []Todo {
 }
 
 func listTask(list []Todo) {
-	for _, job := range list {
-		if job.Done {
-			fmt.Printf("%d. ✓ %s\n", job.ID, job.Text)
+	for _, task := range list {
+		if task.Done {
+			fmt.Printf("%d. ✓ %s\n", task.ID, task.Text)
 		} else {
-			fmt.Printf("%d. ○ %s\n", job.ID, job.Text)
+			fmt.Printf("%d. ○ %s\n", task.ID, task.Text)
 		}
 	}
 }
