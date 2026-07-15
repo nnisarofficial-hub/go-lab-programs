@@ -13,7 +13,7 @@ func main() {
 		fmt.Println("Error:", err)
 		fmt.Printf("Balance: PKR %.2f\n\n", deposit)
 	} else {
-		fmt.Printf("Deposited PKR %.2f\n", 5000.00) // This will be skipped now
+		fmt.Printf("Deposited PKR %.2f\n", 5000.00) 
 		fmt.Printf("Balance: PKR %.2f\n\n", deposit)
 	}
 
