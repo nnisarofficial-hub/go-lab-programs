@@ -45,7 +45,6 @@ type Todo struct {
 	Text string
 	Done bool
 }
-
 // ========================
 //
 //	Handling Core Functions
@@ -78,9 +77,6 @@ func handleTaskDone(reader *bufio.Reader, list []Todo) []Todo {
 		return list
 	}
 	reader.ReadString('\n')
-	// list = doneTask(list, id)
-	// return list
-
 	var found bool
 	list, found = doneTask(list, id)
 	if !found {
@@ -89,7 +85,6 @@ func handleTaskDone(reader *bufio.Reader, list []Todo) []Todo {
 		fmt.Println("Task marked as done! ✓")
 	}
 	return list
-
 }
 
 func handleDeleteTask(reader *bufio.Reader, list []Todo) []Todo {
@@ -109,15 +104,12 @@ func handleDeleteTask(reader *bufio.Reader, list []Todo) []Todo {
 		fmt.Println("Task deleted successfully! ✓")
 	}
 	return list
-
 }
-
 // ========================
 //
 //	Core Functions
 //
 // ========================
-
 func addTask(list []Todo, taskText string) []Todo {
 	nextID := len(list) + 1
 	newTodo := Todo{ID: nextID, Text: taskText, Done: false}
