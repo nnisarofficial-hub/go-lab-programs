@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
 )
 
@@ -24,7 +23,7 @@ func main() {
 		case "1":
 			todoList = handleAddTask(reader, todoList)
 		case "2":
-			handleListTask(todoList)
+			listTask(todoList)
 		case "3":
 			todoList = handleTaskDone(reader, todoList)
 		case "4":
@@ -70,46 +69,47 @@ func handleAddTask(reader *bufio.Reader, list []Todo) []Todo {
 	}
 }
 
-func handleListTask(list []Todo) {
-	if len(list) == 0 {
-		fmt.Println("No Task Found")
-		return
-	}
-	listTask(list)
-}
-
 func handleTaskDone(reader *bufio.Reader, list []Todo) []Todo {
+	var id int
 	fmt.Print("Mark task ID as done: ")
-	id, err := reader.ReadString('\n')
+	_, err := fmt.Scan(&id)
 	if err != nil {
 		fmt.Print(err)
 		return list
 	}
-	id = strings.TrimSpace(id)
-	targetId, err := strconv.Atoi(id)
-	if err != nil {
-		fmt.Print("Please enter valid number ID! ", err)
-		return list
+	reader.ReadString('\n')
+	// list = doneTask(list, id)
+	// return list
+
+	var found bool
+	list, found = doneTask(list, id)
+	if !found {
+		fmt.Printf("Error: Task ID %d not found!\n", id)
+	} else {
+		fmt.Println("Task marked as done! ✓")
 	}
-	list = doneTask(list, targetId)
 	return list
+
 }
 
 func handleDeleteTask(reader *bufio.Reader, list []Todo) []Todo {
+	var id int
 	fmt.Print("Enter task ID to delete: ")
-	id, err := reader.ReadString('\n')
+	_, err := fmt.Scan(&id)
 	if err != nil {
 		fmt.Print(err)
 		return list
 	}
-	id = strings.TrimSpace(id)
-	targetId, err := strconv.Atoi(id)
-	if err != nil {
-		fmt.Print("Please enter valid number ID! ", err)
-		return list
+	reader.ReadString('\n')
+	var found bool
+	list, found = deleteTask(list, id)
+	if !found {
+		fmt.Printf("Error: Task ID %d not found!\n", id)
+	} else {
+		fmt.Println("Task deleted successfully! ✓")
 	}
-	list = deleteTask(list, targetId)
 	return list
+
 }
 
 // ========================
@@ -125,6 +125,9 @@ func addTask(list []Todo, taskText string) []Todo {
 }
 
 func listTask(list []Todo) {
+	if len(list) == 0 {
+		fmt.Printf("Task List is Empty")
+	}
 	for _, task := range list {
 		if task.Done {
 			fmt.Printf("%d. ✓ %s\n", task.ID, task.Text)
@@ -134,21 +137,22 @@ func listTask(list []Todo) {
 	}
 }
 
-func doneTask(list []Todo, targetID int) []Todo {
+func doneTask(list []Todo, targetID int) ([]Todo, bool) {
 	for i := range list {
 		if list[i].ID == targetID {
 			list[i].Done = true
-			break
+			return list, true
 		}
 	}
-	return list
+	return list, false
 }
 
-func deleteTask(list []Todo, targetID int) []Todo {
+func deleteTask(list []Todo, targetID int) ([]Todo, bool) {
 	for i := range list {
 		if list[i].ID == targetID {
-			return append(list[:i], list[i+1:]...)
+			updatedList := append(list[:i], list[i+1:]...)
+			return updatedList, true
 		}
 	}
-	return list
+	return list, false
 }
