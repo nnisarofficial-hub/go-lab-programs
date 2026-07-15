@@ -37,23 +37,23 @@ type BankAccount struct {
 }
 
 func (acc *BankAccount) Deposit(amountDepo float64) (float64, error) {
-	if amountDepo < 0 {
+	if amountDepo <= 0 {
 		return acc.Balance, errors.New("deposit amount cannot be negative")
 	}
 	acc.Balance += amountDepo
 	return acc.Balance, nil
 }
 
-func (acc *BankAccount) Withdraw(amountWdr float64) (amount float64, err error) {
+func (acc *BankAccount) Withdraw(amountWdr float64) (float64, error) {
 	if amountWdr <= 0 {
 		return acc.Balance, errors.New("withdrawal amount must be greater than zero")
 	}
 	if amountWdr > acc.Balance {
-		err = fmt.Errorf("error: insufficient funds (tried to withdraw PKR %.2f, balance is PKR %.2f)", amountWdr, acc.Balance)
+		err := fmt.Errorf("error: insufficient funds (tried to withdraw PKR %.2f, balance is PKR %.2f)", amountWdr, acc.Balance)
 		return acc.Balance, err
 	}
 	acc.Balance -= amountWdr
-	return acc.Balance, err
+	return acc.Balance, nil
 }
 
 func (acc BankAccount) PrintStatement() {
