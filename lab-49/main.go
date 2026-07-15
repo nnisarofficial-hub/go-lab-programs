@@ -118,9 +118,9 @@ func handleDeleteTask(reader *bufio.Reader, list []Todo) []Todo {
 //
 // ========================
 
-func addTask(list []Todo, taskTest string) []Todo {
+func addTask(list []Todo, taskText string) []Todo {
 	nextID := len(list) + 1
-	newTodo := Todo{ID: nextID, Text: taskTest, Done: false}
+	newTodo := Todo{ID: nextID, Text: taskText, Done: false}
 	return append(list, newTodo)
 }
 
