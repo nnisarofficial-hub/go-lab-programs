@@ -38,7 +38,7 @@ type BankAccount struct {
 
 func (acc *BankAccount) Deposit(amountDepo float64) (float64, error) {
 	if amountDepo <= 0 {
-		return acc.Balance, errors.New("deposit amount cannot be negative")
+		return acc.Balance, errors.New("deposit amount must be greater than zero")
 	}
 	acc.Balance += amountDepo
 	return acc.Balance, nil
