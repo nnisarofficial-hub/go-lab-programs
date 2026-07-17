@@ -76,7 +76,6 @@ func handleTaskDone(reader *bufio.Reader, list []Todo) []Todo {
 		fmt.Print(err)
 		return list
 	}
-	reader.ReadString('\n')
 	list, found := doneTask(list, id)
 	if !found {
 		fmt.Printf("Error: Task ID %d not found!\n", id)
