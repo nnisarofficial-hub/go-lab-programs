@@ -93,7 +93,6 @@ func handleDeleteTask(reader *bufio.Reader, list []Todo) []Todo {
 		fmt.Print(err)
 		return list
 	}
-	reader.ReadString('\n')
 	var found bool
 	list, found = deleteTask(list, id)
 	if !found {
